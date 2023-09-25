@@ -1,0 +1,23 @@
+get http://localhost:3000/videos
+
+###
+POST http://localhost:3000/videos
+Content-Type: application/json
+
+{
+    "title":"video 02",
+    "description":"Esse é um video de cultura",
+    "duration":180
+}
+###
+get http://localhost:3000/api/todo
+
+###
+POST http://localhost:3000/api/todo
+Content-Type: application/json
+
+{    
+    "name":"Brincar", 
+    "descricao":"Brincar com a bb"
+}
+###

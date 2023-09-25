@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// prisma/schema.prisma
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+  //  shadowDatabaseUrl = env(“SHADOW_DATABASE_URL”)
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+}
+
+model Todo {
+  id        Int      @id @default(autoincrement())
+  name      String
+  descricao String?
+  status    Status   @default(ABERTO)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Status {
+  ATIVO
+  DESATIVADO
+  FAZENDO
+  PAUSADO
+  CANCELADO
+  ABERTO
+}
