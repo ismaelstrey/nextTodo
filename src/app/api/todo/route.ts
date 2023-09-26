@@ -13,7 +13,11 @@ export async function GET(request: Request) {
 }
 
 export async function POST(req: Request) {
-    const data = await req.json()
+    const data = await req.json()   
+    if (data.name === ' '&& data.descricao === ''){
+        console.log("vazio")
+        throw new Error(" Campos obrigatórios")
+    }
     const todo = await prisma.todo.create({
         data
     })

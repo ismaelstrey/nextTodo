@@ -4,7 +4,7 @@ import Todo from "./components/Todo"
 const getTodo = async () => {
 
   const data = await fetch(`http://localhost:3000/api/todo`, {
-    cache: "force-cache",
+    cache: "no-store",
   })
   return data.json()
 }
