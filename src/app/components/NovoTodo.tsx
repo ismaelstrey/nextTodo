@@ -44,9 +44,6 @@ const NovoTodo = () => {
         </div>}
         <span className='fixed bottom-2 right-2 bg-slate-950 text-white rounded-full w-20 h-20 flex justify-center hover:bg-slate-900 hover:border-solid hover:border-yellow-300 hover:border-8' onClick={()=>setMostar(!mostar)}><button>Mostrar</button></span>
     </div>
-    )
-
-       
+    )       
 }
-
 export default NovoTodo
