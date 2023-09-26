@@ -11,7 +11,7 @@ export default function Home() {
   const [isLoading, setLoading] = useState(true)
  
   useEffect(() => {
-    fetch('http://localhost:3000/api/todo')
+    fetch('/api/todo')
       .then((res) => res.json())
       .then((data) => {
         setData(data)
