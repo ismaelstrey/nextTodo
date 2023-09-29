@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from 'react'
-import NovoTodo from "./components/NovoTodo"
-import Todo from "./components/Todo"
+import NovoTodo from "./components/Todo/NovoTodo"
+import Todo from "./components/Todo/Todo"
 import { Lista } from '@/types/todos'
 
 
@@ -11,7 +11,9 @@ export default function Home() {
   const [isLoading, setLoading] = useState(true)
  
   useEffect(() => {
-    fetch('/api/todo')
+    fetch('/api/todo',{
+      cache:'no-store'
+    })
       .then((res) => res.json())
       .then((data) => {
         setData(data)

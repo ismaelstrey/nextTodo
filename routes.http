@@ -21,3 +21,9 @@ Content-Type: application/json
     "descricao":"Brincar com a bb"
 }
 ###
+
+DELETE http://localhost:3000/api/todo?1
+Content-Type: application/json
+
+
+###

@@ -4,6 +4,7 @@ import { prisma } from "../../../../services/prisma";
 export async function GET(request: Request) {
     const todo = await prisma.todo.findMany({
         select: {
+            id:true,
             name: true,
             descricao: true,
             status: true
@@ -23,3 +24,4 @@ export async function POST(req: Request) {
     })
     return NextResponse.json({ todo })
 }
+
