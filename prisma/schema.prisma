@@ -23,6 +23,7 @@ model Todo {
   id        Int      @id @default(autoincrement())
   name      String
   descricao String?
+  percentual Int? @default(0)
   status    Status   @default(ABERTO)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

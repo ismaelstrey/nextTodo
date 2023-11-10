@@ -18,11 +18,12 @@ Content-Type: application/json
 
 {    
     "name":"Brincar", 
-    "descricao":"Brincar com a bb"
+    "descricao":"Brincar com a bb",
+    "percentual":90
 }
 ###
 
-DELETE http://localhost:3000/api/todo?1
+DELETE http://localhost:3000/api/todo/7
 Content-Type: application/json
 
 

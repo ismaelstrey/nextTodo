@@ -7,8 +7,6 @@ export async function GET(
   console.log("Chegou aqui get")
   const id = params.id
   return NextResponse.json({id})
- 
-
   }
 
   

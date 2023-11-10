@@ -1,11 +1,9 @@
-import { Lista } from '@/types/todos'
-import React from 'react'
+import {  Lista } from '@/types/todos'
 import TodoList from './List'
 
-const Todo = ({ todo }: Lista) => {
-  
+const Todo = ({ todo }: Lista) => {  
     return (
-        <div>
+        <div className='gap-2 flex flex-col'>
             <div>Todo</div>
           <TodoList todo={todo}/>
         </div>

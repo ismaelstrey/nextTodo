@@ -1,7 +1,7 @@
 type List = {
     id?:string
     name: string;
-    description: string;
+    descricao: string;
 }
  export type Lista = {
     todo: List[];

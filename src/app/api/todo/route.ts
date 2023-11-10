@@ -7,7 +7,8 @@ export async function GET(request: Request) {
             id:true,
             name: true,
             descricao: true,
-            status: true
+            status: true,
+            percentual:true
         }
     })
     return NextResponse.json({ todo })
