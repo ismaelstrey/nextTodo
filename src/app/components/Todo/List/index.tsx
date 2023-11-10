@@ -1,25 +1,11 @@
-import { Lista } from "@/types/todos";
-import { BeakerIcon, ForwardIcon, ArrowDownLeftIcon, PauseIcon, PlayIcon } from "@heroicons/react/24/solid";
-import React from "react";
+
+import { ForwardIcon, PauseIcon, PlayIcon } from "@heroicons/react/24/solid";
+import React, { useContext } from "react";
+import { TodoContext } from "../../context/todoContext";
+import { Lista } from "@/app/@types/TypesList";
 
 const TodoList = ({ todo }: Lista) => {
-  console.log(todo);
-  const deleteLista = async (id: number | undefined | string) => {
-    try {
-      const response = await fetch(`/api/todo/${id}`, {
-        method: "DELETE",
-      });
-
-      if (response.ok) {
-        // Faça alguma coisa após a exclusão bem-sucedida, se necessário.
-        console.log(response);
-      } else {
-        // Lidar com erros, se necessário.
-      }
-    } catch (error) {
-      // Lidar com erros, se necessário.
-    }
-  };
+  const { deleteLista } = useContext(TodoContext)
   return (
     <div className="flex w-full h-full rounded-md">
       <ul className="flex flex-col gap-2">

@@ -4,19 +4,22 @@ import { prisma } from "../../../../services/prisma";
 export async function GET(request: Request) {
     const todo = await prisma.todo.findMany({
         select: {
-            id:true,
+            id: true,
             name: true,
             descricao: true,
             status: true,
-            percentual:true
+            percentual: true,
+            createdAt: true,
+            updatedAt: true
         }
     })
     return NextResponse.json({ todo })
 }
 
 export async function POST(req: Request) {
-    const data = await req.json()   
-    if (data.name === ' '&& data.descricao === ''){
+
+    const data = await req.json()
+    if (data.name === ' ' && data.descricao === '') {
         console.log("vazio")
         throw new Error(" Campos obrigatórios")
     }

@@ -1,10 +1,13 @@
-import { Lista } from '@/types/todos'
+'use client'
+import { TodoContext } from '../context/todoContext'
+import { useContext } from 'react'
 import TodoList from './List'
 
-const Todo = ({ todo }: Lista) => {
+function Todo() {
+    const { todo } = useContext(TodoContext)
     return (
         <div className='gap-2 flex flex-col'>
-            <TodoList todo={todo} />
+            {todo && <TodoList todo={todo.todo} />}
         </div>
     )
 }
