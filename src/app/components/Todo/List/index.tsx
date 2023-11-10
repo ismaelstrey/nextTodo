@@ -28,10 +28,10 @@ const TodoList = ({ todo }: Lista) => {
           const restante = `${Math.abs(Number(l.percentual) - 100)}%`;
 
           return (
-            <div key={l.id} className="flex flex-col shadow-md p-1 rounded-md bg-white">
+            <div key={l.id} className="flex flex-col shadow-md border-2 border-indigo-500 rounded-b-md bg-white">
               <div className="flex bg-indigo-700">
                 <div
-                  className="flex content-center items-center text-[10px] bg-gradient-to-r from-yellow-500 via-green-400 to-green-600 h-2.5 border-l-0 rounded-r-full"
+                  className="flex content-center items-center text-[10px] bg-gradient-to-r from-yellow-500 via-green-400 to-green-600 h-2.5 border-l-0 rounded-r-md"
                   style={{ minWidth: largura }}
                 >
                   {largura} feito
@@ -39,8 +39,16 @@ const TodoList = ({ todo }: Lista) => {
               </div>
 
               <div className=" flex w-80 min-h-[100px] content-center justify-between flex-col">
-                <span> {l.name}</span>
-                <span className="">{l.descricao}</span>
+                <div className="flex justify-between">
+                  <div>
+                    <span className="bg-yellow-200 rounded-full p-[2px]">config,</span><span className="bg-red-200 rounded-full p-[2px]">urgente,</span></div>
+                  <span className="top-0 right-0">#{l.id}</span>
+                </div>
+                <div className="flex flex-col p-2">
+
+                  <span> {l.name}</span>
+                  <span className="">{l.descricao}</span>
+                </div>
                 <div className="flex bg-gray-100 justify-around">
                   <button onClick={() => deleteLista(l.id)}>
 
@@ -59,9 +67,9 @@ const TodoList = ({ todo }: Lista) => {
                   </button>
                 </div>
               </div>
-              <div className="flex flex-row-reverse bg-indigo-700">
+              <div className="flex flex-row-reverse">
                 <div
-                  className="flex content-center items-center text-[10px] bg-gradient-to-r from-yellow-500 via-green-400 to-green-600 h-2.5 border-l-0 rounded-r-full text-right"
+                  className="flex content-center items-center text-[10px] bg-gradient-to-r from-green-500 to-indigo-500 h-2.5 border-l-0 rounded-br-[0.2rem] text-right"
                   style={{ minWidth: restante }}
                 >
                   {restante} restante
