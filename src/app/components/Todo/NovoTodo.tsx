@@ -11,6 +11,7 @@ const NovoTodo = () => {
         e.preventDefault()
 
         novoTodo({ name, descricao })
+        setMostar(false)
 
     }
 

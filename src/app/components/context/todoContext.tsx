@@ -58,7 +58,7 @@ function TodoProvider(props: { children: React.ReactNode }) {
     useEffect(() => {
         getTodo()
 
-    }, [])
+    }, [todo])
 
     return (
         <TodoContext.Provider value={{ todo, setTodo, gravar, deleteLista, novoTodo }}>
