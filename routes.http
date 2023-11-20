@@ -22,9 +22,27 @@ Content-Type: application/json
     "percentual":90
 }
 ###
+POST http://localhost:3000/api/todo
+Content-Type: application/json
+
+{    
+    "name":"Brincar", 
+    "descricao":"Brincar com a bb",
+    "percentual":90,
+    "status": "DESATIVADO" 
+}
+###
 
 DELETE http://localhost:3000/api/todo/7
 Content-Type: application/json
 
 
 ###
+
+
+# ATIVO
+#   DESATIVADO
+#   FAZENDO
+#   PAUSADO
+#   CANCELADO
+#   ABERTO
