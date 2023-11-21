@@ -1,31 +1,33 @@
-export const color = (cor: string) => {
+import { Status } from "../@types/TypesList";
+
+export const color = (cor: Status) => {
   switch (cor) {
-    case 'ABERTO': return 'bg-green-500'
+    case Status.ABERTO: return 'bg-green-500'
       break;
-    case 'FAZENDO': return 'bg-blue-500'
+    case Status.FAZENDO: return 'bg-blue-500'
       break;
-    case 'PAUSADO': return 'bg-indigo-500'
+    case Status.PAUSADO: return 'bg-indigo-500'
       break;
-    case 'CANCELADO': return 'bg-red-500'
+    case Status.CANCELADO: return 'bg-red-500'
       break;
-    case 'CONCLUIDO': return 'bg-purple-500'
+    case Status.CONCLUIDO: return 'bg-purple-500'
       break;
 
     default:
       break;
   }
 }
-export const colorCard = (cor: string) => {
+export const colorCard = (cor: Status) => {
   switch (cor) {
-    case 'ABERTO': return 'bg-green-100'
+    case Status.ABERTO: return 'bg-green-100'
       break;
-    case 'FAZENDO': return 'bg-blue-100'
+    case Status.FAZENDO: return 'bg-blue-100'
       break;
-    case 'PAUSADO': return 'bg-indigo-100'
+    case Status.PAUSADO: return 'bg-indigo-100'
       break;
-    case 'CANCELADO': return 'bg-red-100'
+    case Status.CANCELADO: return 'bg-red-100'
       break;
-    case 'CONCLUIDO': return 'bg-purple-100'
+    case Status.CONCLUIDO: return 'bg-purple-100'
       break;
 
     default:

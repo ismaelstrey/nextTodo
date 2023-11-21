@@ -1,10 +1,11 @@
 import React, { ReactNode } from 'react';
 import Todo from '../Todo/Todo';
 import { color } from '@/app/helper/color';
+import { Status } from '@/app/@types/TypesList';
 
 interface KanbamProps {
     children: ReactNode;
-    type: string;
+    type: Status;
 }
 
 const Kanbam: React.FC<KanbamProps> = ({ type }) => (

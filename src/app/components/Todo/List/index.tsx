@@ -2,9 +2,10 @@
 import { ForwardIcon, PauseIcon, PlayIcon } from "@heroicons/react/24/solid";
 import React, { useContext } from "react";
 import { TodoContext } from "../../context/todoContext";
-import { Lista, List } from "@/app/@types/TypesList";
+import { Lista, List, Status } from "@/app/@types/TypesList";
 import moment, { Moment } from "moment"
 import { color, colorCard } from "@/app/helper/color";
+
 
 
 
@@ -55,7 +56,8 @@ const TodoList = ({ todo, type }: Lista) => {
               <div className=" flex w-80 min-h-[100px] content-center justify-between flex-col">
                 <div className="flex justify-between">
                   <div>
-                    <span className="bg-yellow-200 rounded-full p-[2px]">config,</span><span className="bg-red-200 rounded-full p-[2px]">urgente,</span><span className={`text-white text-sm rounded-full p-[2px] ${color(l.status)}`}>{l.status}</span></div>
+                    <span className="bg-yellow-200 rounded-full p-[2px]">config,</span><span className="bg-red-200 rounded-full p-[2px]">urgente,</span>
+                    <span className={`text-white text-sm rounded-full p-[2px] ${color(l.status)}`}>{l.status}</span></div>
                   <span className="top-0 right-0">#{l.id}</span>
                 </div>
                 <div className="flex flex-col p-2">
@@ -72,22 +74,22 @@ const TodoList = ({ todo, type }: Lista) => {
                 </div>
                 <div className="flex bg-gray-100 justify-around">
                   {
-                    l.status !== "ABERTO" && <button onClick={() => atualizarTodo(l.id, "FAZENDO")}>
+                    l.status !== Status.FAZENDO && <button onClick={() => atualizarTodo({ "id": l.id, "status": "FAZENDO" })}>
 
                       <ForwardIcon className="h-6 w-6 text-red-700 hover:text-red-600 rotate-180" />
                     </button>
                   }
                   {
-                    l.status === "ABERTO" && <button onClick={() => atualizarTodo(l.id, "FAZENDO")}>
+                    l.status !== Status.ABERTO && <button onClick={() => atualizarTodo({ id: l.id, status: "FAZENDO" })}>
                       <PlayIcon className="h-6 w-6 text-red-700 hover:text-red-600" />
                     </button>
                   }
-                  {l.status === "FAZENDO" && <button onClick={() => deleteLista(l.id)}>
+                  {l.status == Status.FAZENDO && <button onClick={() => deleteLista(l.id)}>
                     <PauseIcon className="h-6 w-6 text-red-700 hover:text-red-600" />
                   </button>}
 
                   {
-                    (l.status !== "ABERTO" && l.status !== "CONCLUIDO") && <button onClick={() => deleteLista(l.id)}>
+                    (l.status !== Status.ABERTO && l.status !== Status.CONCLUIDO) && <button onClick={() => deleteLista(l.id)}>
 
                       <ForwardIcon className="h-6 w-6 text-red-700 hover:text-red-600" />
                     </button>

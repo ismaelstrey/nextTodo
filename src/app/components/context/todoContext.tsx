@@ -1,6 +1,6 @@
 "use client"
 
-import { Lista, List } from "@/app/@types/TypesList";
+import { Lista, List, Status } from "@/app/@types/TypesList";
 import React, { useEffect, useState } from "react";
 
 
@@ -43,24 +43,37 @@ function TodoProvider(props: { children: React.ReactNode }) {
     };
 
     const novoTodo = ({ name, descricao }: List) => {
-        console.log({ name, descricao })
-        fetch(`/api/todo`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name, descricao }),
-        });
+        try {
+            console.log({ name, descricao })
+            fetch(`/api/todo`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, descricao }),
+            });
+        } catch (error) {
+            console.log(error)
+        }
     }
-    const atualizarTodo = ({ status, id }: List) => {
+    interface atualizaProps {
+        id: string;
+        status: string;
+    }
+    const atualizarTodo = async ({ id, status }: List) => {
 
-        fetch(`/api/todo/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ status }),
-        });
+        try {
+            console.log(id, status)
+            await fetch(`/api/todo/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status }),
+            });
+        } catch (error) {
+
+        }
     }
 
 
