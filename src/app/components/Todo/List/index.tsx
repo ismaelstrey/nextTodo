@@ -2,18 +2,18 @@
 import { ForwardIcon, PauseIcon, PlayIcon } from "@heroicons/react/24/solid";
 import React, { useContext } from "react";
 import { TodoContext } from "../../context/todoContext";
-import { Lista,List } from "@/app/@types/TypesList";
+import { Lista, List } from "@/app/@types/TypesList";
 import moment, { Moment } from "moment"
-import { color } from "@/app/helper/color";
+import { color, colorCard } from "@/app/helper/color";
 
 
 
 
 const TodoList = ({ todo, type }: Lista) => {
-  const { deleteLista } = useContext(TodoContext)
+  const { deleteLista, atualizarTodo } = useContext(TodoContext)
   const hora = moment().format('h:mm:ss a');
   //@ts-ignore
-  const filtra = (): List[] =>  todo.filter(f => f.status === type)
+  const filtra = (): List[] => todo.filter(f => f.status === type)
 
   function calculateHoursDifference(startDate: string, endDate: string): number {
     // Parse as datas usando o Moment.js
@@ -36,13 +36,13 @@ const TodoList = ({ todo, type }: Lista) => {
   return (
     <div className="flex w-full h-full rounded-md">
       <ul className="flex flex-col gap-2">
-        {filtra().map((l:List) => {
+        {filtra().map((l: List) => {
           const largura = `${l.percentual}%`;
           const restante = `${Math.abs(Number(l.percentual) - 100)}%`;
-        
+
 
           return (
-            <div key={l.id} className="flex flex-col shadow-md border-2 border-indigo-500 rounded-b-md bg-cyan-200 hover:animate-pulse hover:cursor-pointer">
+            <div key={l.id} className={`flex flex-col shadow-md border-2 border-indigo-500 rounded-b-md hover:animate-pulse hover:cursor-pointer ${colorCard(l.status)}`}>
               <div className="flex bg-indigo-700">
                 <div
                   className="flex content-center items-center text-[10px] bg-gradient-to-r from-yellow-500 via-green-400 to-green-600 h-2.5 border-l-0 rounded-r-md"
@@ -55,7 +55,7 @@ const TodoList = ({ todo, type }: Lista) => {
               <div className=" flex w-80 min-h-[100px] content-center justify-between flex-col">
                 <div className="flex justify-between">
                   <div>
-                    <span className="bg-yellow-200 rounded-full p-[2px]">config,</span><span className="bg-red-200 rounded-full p-[2px]">urgente,</span><span className= {`text-white text-sm rounded-full p-[2px] ${color(l.status)}`}>{l.status}</span></div>
+                    <span className="bg-yellow-200 rounded-full p-[2px]">config,</span><span className="bg-red-200 rounded-full p-[2px]">urgente,</span><span className={`text-white text-sm rounded-full p-[2px] ${color(l.status)}`}>{l.status}</span></div>
                   <span className="top-0 right-0">#{l.id}</span>
                 </div>
                 <div className="flex flex-col p-2">
@@ -71,21 +71,27 @@ const TodoList = ({ todo, type }: Lista) => {
 
                 </div>
                 <div className="flex bg-gray-100 justify-around">
-                  <button onClick={() => deleteLista(l.id)}>
+                  {
+                    l.status !== "ABERTO" && <button onClick={() => atualizarTodo(l.id, "FAZENDO")}>
 
-                    <ForwardIcon className="h-6 w-6 text-red-700 hover:text-red-600 rotate-180" />
-                  </button>
-                  <button onClick={() => deleteLista(l.id)}>
-                    <PlayIcon className="h-6 w-6 text-red-700 hover:text-red-600" />
-                  </button>
-                  <button onClick={() => deleteLista(l.id)}>
+                      <ForwardIcon className="h-6 w-6 text-red-700 hover:text-red-600 rotate-180" />
+                    </button>
+                  }
+                  {
+                    l.status === "ABERTO" && <button onClick={() => atualizarTodo(l.id, "FAZENDO")}>
+                      <PlayIcon className="h-6 w-6 text-red-700 hover:text-red-600" />
+                    </button>
+                  }
+                  {l.status === "FAZENDO" && <button onClick={() => deleteLista(l.id)}>
                     <PauseIcon className="h-6 w-6 text-red-700 hover:text-red-600" />
-                  </button>
+                  </button>}
 
-                  <button onClick={() => deleteLista(l.id)}>
+                  {
+                    (l.status !== "ABERTO" && l.status !== "CONCLUIDO") && <button onClick={() => deleteLista(l.id)}>
 
-                    <ForwardIcon className="h-6 w-6 text-red-700 hover:text-red-600" />
-                  </button>
+                      <ForwardIcon className="h-6 w-6 text-red-700 hover:text-red-600" />
+                    </button>
+                  }
                 </div>
               </div>
               <div className="flex flex-row-reverse">

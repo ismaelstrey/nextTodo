@@ -11,7 +11,7 @@ export type Lista = {
     todo?: List[];
     novoTodo?: () => List;
     type?: Status | string;
-    filtra?:() => List[];
+    filtra?: () => List[];
 }
 export enum Status {
     ATIVO,
@@ -19,5 +19,7 @@ export enum Status {
     FAZENDO,
     PAUSADO,
     CANCELADO,
-    ABERTO
+    ABERTO,
+    CONCLUIDO
+
 }

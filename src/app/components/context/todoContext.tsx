@@ -52,6 +52,16 @@ function TodoProvider(props: { children: React.ReactNode }) {
             body: JSON.stringify({ name, descricao }),
         });
     }
+    const atualizarTodo = ({ status, id }: List) => {
+
+        fetch(`/api/todo/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ status }),
+        });
+    }
 
 
 
@@ -61,7 +71,7 @@ function TodoProvider(props: { children: React.ReactNode }) {
     }, [todo])
 
     return (
-        <TodoContext.Provider value={{ todo, setTodo, gravar, deleteLista, novoTodo }}>
+        <TodoContext.Provider value={{ todo, setTodo, gravar, deleteLista, novoTodo, atualizarTodo }}>
             {props.children}
         </TodoContext.Provider>
     );
