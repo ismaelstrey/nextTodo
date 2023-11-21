@@ -29,7 +29,7 @@ Content-Type: application/json
     "name":"Brincar", 
     "descricao":"Brincar com a bb",
     "percentual":90,
-    "status": "DESATIVADO" 
+    "status": "PAUSADO" 
 }
 ###
 

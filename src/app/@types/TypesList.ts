@@ -10,9 +10,10 @@ export type List = {
 export type Lista = {
     todo?: List[];
     novoTodo?: () => List;
-    type?: string;
+    type?: Status | string;
+    filtra?:() => List[];
 }
-enum Status {
+export enum Status {
     ATIVO,
     DESATIVADO,
     FAZENDO,

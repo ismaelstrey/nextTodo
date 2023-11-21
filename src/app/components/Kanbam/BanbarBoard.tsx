@@ -11,7 +11,6 @@ const KanbamBoard: React.FC<KanbamBoardProps> = ({ children }) => (
         <Kanbam type='ATIVO'>{children}</Kanbam>
         <Kanbam type='PAUSADO'>{children}</Kanbam>
         <Kanbam type='CANCELADO'>{children}</Kanbam>
-        <Kanbam type='DESATIVADO'>{children}</Kanbam>
     </div>
 );
 
