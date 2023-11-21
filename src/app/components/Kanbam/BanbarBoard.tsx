@@ -6,9 +6,20 @@ interface KanbamBoardProps {
 }
 
 const KanbamBoard: React.FC<KanbamBoardProps> = ({ children }) => (
-    <div className="flex flex-row gap-2">
-        <Kanbam>{children}</Kanbam>
+    <div className="flex flex-row gap-2 bg-blue-950 w-full min-h-screen justify-center">
+        <Kanbam type='FAZENDO'>{children}</Kanbam>
+        <Kanbam type='ATIVO'>{children}</Kanbam>
+        <Kanbam type='PAUSADO'>{children}</Kanbam>
+        <Kanbam type='CANCELADO'>{children}</Kanbam>
+        <Kanbam type='DESATIVADO'>{children}</Kanbam>
     </div>
 );
 
 export default KanbamBoard;
+
+// ATIVO,
+// DESATIVADO,
+// FAZENDO,
+// PAUSADO,
+// CANCELADO,
+// ABERTO

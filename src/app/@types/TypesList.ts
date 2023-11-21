@@ -3,13 +3,14 @@ export type List = {
     name: string;
     descricao: string;
     percentual?: number;
-    status?:Status;
+    status?: Status;
     createdAt: string;
     updatedAt?: string;
 }
 export type Lista = {
-    todo: List[];
+    todo?: List[];
     novoTodo?: () => List;
+    type?: string;
 }
 enum Status {
     ATIVO,
@@ -18,4 +19,4 @@ enum Status {
     PAUSADO,
     CANCELADO,
     ABERTO
-  }
+}

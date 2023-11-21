@@ -5,7 +5,7 @@ interface MainProps {
 }
 
 const Main: React.FC<MainProps> = ({ children }) => (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24">
+    <div className="flex min-h-screen flex-col items-center justify-between ">
         {children}
     </div>
 );

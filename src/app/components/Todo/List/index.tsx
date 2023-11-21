@@ -3,35 +3,37 @@ import { ForwardIcon, PauseIcon, PlayIcon } from "@heroicons/react/24/solid";
 import React, { useContext } from "react";
 import { TodoContext } from "../../context/todoContext";
 import { Lista } from "@/app/@types/TypesList";
-import moment,{Moment} from "moment"
+import moment, { Moment } from "moment"
 
 
-const TodoList = ({ todo }: Lista) => {
+
+const TodoList = ({ todo, type = 'ABERTO' }: Lista) => {
   const { deleteLista } = useContext(TodoContext)
-  const hora =  moment().format('h:mm:ss a');
+  const hora = moment().format('h:mm:ss a');
+  const filtra = (): Lista => todo.filter(f => f.status === type)
 
-  function calculateHoursDifference(startDate:string, endDate:string):number {
+  function calculateHoursDifference(startDate: string, endDate: string): number {
     // Parse as datas usando o Moment.js
-    const startMoment:Moment = moment(startDate);
-    const endMoment:Moment = moment(endDate);
-  
+    const startMoment: Moment = moment(startDate);
+    const endMoment: Moment = moment(endDate);
+
     // Verifique se as datas são válidas
     if (!startMoment.isValid() || !endMoment.isValid()) {
       throw new Error
     }
-  
-    // Calcule a diferença em milissegundos
-  const differenceInMilliseconds: number = endMoment.diff(startMoment);
 
-  // Converta a diferença para horas
-  const differenceInHours: number = moment.duration(differenceInMilliseconds).asHours();
+    // Calcule a diferença em milissegundos
+    const differenceInMilliseconds: number = endMoment.diff(startMoment);
+
+    // Converta a diferença para horas
+    const differenceInHours: number = moment.duration(differenceInMilliseconds).asHours();
 
     return differenceInHours;
   }
   return (
     <div className="flex w-full h-full rounded-md">
       <ul className="flex flex-col gap-2">
-        {todo.map((l) => {
+        {filtra().map((l) => {
           const largura = `${l.percentual}%`;
           const restante = `${Math.abs(Number(l.percentual) - 100)}%`;
 
@@ -57,12 +59,12 @@ const TodoList = ({ todo }: Lista) => {
                   <span> {l.name}</span>
                   <span className="">{l.descricao}</span>
                 </div>
-               <div className="flex justify-around"> 
-               <div className='flex'>{moment(l.createdAt).format('DD/MM - HH:M')}</div>
-                <div className='flex'>{hora}</div>
-                <div className='flex'>{calculateHoursDifference(l.createdAt.toString(),moment().format()).toFixed(2)}</div>
-                
-                
+                <div className="flex justify-around">
+                  <div className='flex'>{moment(l.createdAt).format('DD/MM - HH:M')}</div>
+                  <div className='flex'>{hora}</div>
+                  <div className='flex'>{calculateHoursDifference(l.createdAt.toString(), moment().format()).toFixed(2)}</div>
+
+
                 </div>
                 <div className="flex bg-gray-100 justify-around">
                   <button onClick={() => deleteLista(l.id)}>
