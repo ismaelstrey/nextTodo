@@ -14,12 +14,12 @@ export type Lista = {
     filtra?: () => List[];
 }
 export enum Status {
-    ATIVO,
-    DESATIVADO,
-    FAZENDO,
-    PAUSADO,
-    CANCELADO,
-    ABERTO,
-    CONCLUIDO
+    ATIVO = "ATIVO",
+    DESATIVADO = "DESATIVADO",
+    FAZENDO = "FAZENDO",
+    PAUSADO = "PAUSADO",
+    CANCELADO = "CANCELADO",
+    ABERTO = "ABERTO",
+    CONCLUIDO = "CONCLUIDO"
 
 }
