@@ -74,22 +74,22 @@ const TodoList = ({ todo, type }: Lista) => {
                 </div>
                 <div className="flex bg-gray-100 justify-around">
                   {
-                    l.status !== Status.FAZENDO && <button onClick={() => atualizarTodo({ "id": l.id, "status": "FAZENDO" })}>
+                    l.status !== Status.FAZENDO && <button onClick={() => atualizarTodo({ id: l.id, status: Status.FAZENDO })}>
 
                       <ForwardIcon className="h-6 w-6 text-red-700 hover:text-red-600 rotate-180" />
                     </button>
                   }
                   {
-                    l.status !== Status.ABERTO && <button onClick={() => atualizarTodo({ id: l.id, status: "FAZENDO" })}>
+                    l.status == Status.ABERTO && <button onClick={() => atualizarTodo({ id: l.id, status: Status.FAZENDO })}>
                       <PlayIcon className="h-6 w-6 text-red-700 hover:text-red-600" />
                     </button>
                   }
-                  {l.status == Status.FAZENDO && <button onClick={() => deleteLista(l.id)}>
+                  {l.status == Status.FAZENDO && <button onClick={() => atualizarTodo({ id: l.id, status: Status.CONCLUIDO })}>
                     <PauseIcon className="h-6 w-6 text-red-700 hover:text-red-600" />
                   </button>}
 
                   {
-                    (l.status !== Status.ABERTO && l.status !== Status.CONCLUIDO) && <button onClick={() => deleteLista(l.id)}>
+                    (l.status !== Status.ABERTO && l.status !== Status.CONCLUIDO) && <button onClick={() => atualizarTodo({ id: l.id, status: Status.CONCLUIDO })}>
 
                       <ForwardIcon className="h-6 w-6 text-red-700 hover:text-red-600" />
                     </button>

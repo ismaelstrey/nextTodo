@@ -36,5 +36,5 @@ export async function PATCH(req: Request, { params }: { params: { todoid: number
     data: body,
   })
   console.log(result)
-  return NextResponse.json({ result })
+  return await NextResponse.json({ result })
 }
