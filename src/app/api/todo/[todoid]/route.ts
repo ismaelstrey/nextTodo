@@ -28,7 +28,7 @@ export async function DELETE(
 }
 export async function PATCH(req: Request, { params }: { params: { todoid: number } }) {
   const idTodo = Number(params.todoid)
-  const data = await req.json()
+  const data = req.json()
   const result = await prisma.todo.updateMany({
     where: {
       id: idTodo,
