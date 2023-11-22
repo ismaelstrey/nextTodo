@@ -30,13 +30,14 @@ export async function PATCH(req: Request, { params }: { params: { todoid: number
   try {
     const idTodo = Number(params.todoid)
     const body = await req.json()
+    console.log(body)
     const result = await prisma.todo.update({
       where: {
         id: idTodo,
       },
       data: body,
     })
-    console.log(result)
+    // console.log(result)
     return NextResponse.json({ result })
   } catch (error: any) {
     if (error.code === "P2025") {
