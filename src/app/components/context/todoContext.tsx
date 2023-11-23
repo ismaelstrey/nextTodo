@@ -73,6 +73,7 @@ function TodoProvider(props: { children: React.ReactNode }) {
                 },
                 body: JSON.stringify({ status, descricao, name, percentual }),
             });
+            setOpenFormulario(!openFormulario)
         } catch (error) {
 
         }

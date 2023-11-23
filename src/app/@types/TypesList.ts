@@ -29,7 +29,7 @@ export type Lista = {
     novoTodo?: () => List;
     type?: Status;
     filtra?: () => List[];
-    atualizarTodo?: () => List;
+    atualizarTodo?:  () => List;
 }
 export enum Status {
     ATIVO = "ATIVO",
