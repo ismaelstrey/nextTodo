@@ -26,12 +26,12 @@ const TodoDetalhes = ({ name, descricao, status, id, percentual, createdAt, upda
                         <span className="flex flex-col w-60">
                             <label htmlFor="status">Status</label>
                             <select id="status" className="b-1" onChange={(e) => setTodoStatus(handleOnchange(e))}>
-                                <option value={Status.ABERTO} defaultValue={status}>{Status.ABERTO}</option>
-                                <option value={Status.ABERTO}>{Status.ABERTO}</option>
-                                <option value={Status.CONCLUIDO}>{Status.CONCLUIDO}</option>
-                                <option value={Status.FAZENDO}>{Status.FAZENDO}</option>
-                                <option value={Status.PAUSADO}>{Status.PAUSADO}</option>
-                                <option value={Status.CANCELADO}>{Status.CANCELADO}</option>
+                                <option value={Status[status]} defaultValue={Status[status]}>{Status[status]}</option>
+                                {Status[status] !== Status.ABERTO && <option value={Status.ABERTO}>{Status.ABERTO}</option>}
+                                {Status[status] !== Status.CONCLUIDO && <option value={Status.CONCLUIDO}>{Status.CONCLUIDO}</option>}
+                                {Status[status] !== Status.FAZENDO && <option value={Status.FAZENDO}>{Status.FAZENDO}</option>}
+                                {Status[status] !== Status.PAUSADO && <option value={Status.PAUSADO}>{Status.PAUSADO}</option>}
+                                {Status[status] !== Status.CANCELADO && <option value={Status.CANCELADO}>{Status.CANCELADO}</option>}
                             </select>
                         </span>
                         <span className="flex flex-col">

@@ -1,29 +1,22 @@
 "use client"
-
-import { Lista, List, Status } from "@/app/@types/TypesList";
+import { Lista, List, TodoProps } from "@/app/@types/TypesList";
 import React, { useEffect, useState } from "react";
-
-
-
 export const TodoContext = React.createContext<Lista | any>([]);
 
 function TodoProvider(props: { children: React.ReactNode }) {
-    const [todo, setTodo] = useState<Lista>();
+    const [todo, setTodo] = useState<TodoProps[]>();
     const [openFormulario, setOpenFormulario] = useState<boolean>(true)
     const [todoLista, setTodoLista] = useState<List>()
-
-
-
 
     const gravar = (todo: Lista) => {
         console.log(todo)
     };
-    const getTodo = () => fetch('/api/todo', {
+    const getTodo = (): Promise<void> => fetch('/api/todo', {
         cache: 'no-store'
     })
         .then((res) => res.json())
-        .then((list) => {
-            setTodo({ ...list })
+        .then((list: { todo: Lista[] }) => {
+            setTodo(list.todo)
         })
 
 
@@ -62,7 +55,7 @@ function TodoProvider(props: { children: React.ReactNode }) {
         id: string;
         status: string;
     }
-    const atualizarTodo: Lista = async ({ id, status, descricao, name, percentual }: List) => {
+    const atualizarTodo = async ({ id, status, descricao, name, percentual }: List) => {
 
         try {
             console.log(id, status)
@@ -79,12 +72,13 @@ function TodoProvider(props: { children: React.ReactNode }) {
         }
     }
 
-    console.log(todo?.filtra)
-    const filtraById = (id: List): List => todo['todo'].filter(f => f.id === id)[0]
-    const handleCliclkOnCard = (id: List) => {
+
+    const filtraById = (id: number): List =>
+        //@ts-ignore
+        todo?.filter(f => f.id === id)[0]
+    const handleCliclkOnCard = (id: number) => {
         setTodoLista(filtraById(id))
         setOpenFormulario(!openFormulario)
-
     }
 
 
@@ -92,7 +86,8 @@ function TodoProvider(props: { children: React.ReactNode }) {
     useEffect(() => {
         getTodo()
 
-    }, [])
+    }, [todo])
+
 
     return (
         <TodoContext.Provider value={{ todo, setTodo, gravar, deleteLista, novoTodo, atualizarTodo, handleCliclkOnCard, openFormulario, todoLista }}>

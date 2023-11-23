@@ -2,13 +2,13 @@
 import { TodoContext } from '../context/todoContext'
 import { useContext } from 'react'
 import TodoList from './List'
-import { Lista } from '@/app/@types/TypesList'
+import { todoTypesProps } from '@/app/@types/TypesList'
 
-function Todo({ type }: Lista) {
+const Todo: React.FC<todoTypesProps> = ({ type }) => {
     const { todo } = useContext(TodoContext)
     return (
         <div className='gap-2 flex'>
-            {todo && <TodoList todo={todo.todo} type={type} />}
+            {todo && <TodoList todo={todo} type={type} />}
         </div>
     )
 }

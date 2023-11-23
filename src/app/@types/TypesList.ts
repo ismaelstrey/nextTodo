@@ -1,18 +1,15 @@
 
 
 export type List = {
-    id?: string
+    id: string
     name: string;
     descricao: string;
-    percentual?: number;
+    percentual: number;
     status: Status;
     createdAt?: string;
     updatedAt?: string;
+}
 
-}
-type FilterProps = {
-    filter: () => List;
-}
 export type todoUpdate = {
     id?: string
     todoName: string;
@@ -23,13 +20,12 @@ export type todoUpdate = {
     TdodoUpdatedAt?: string;
 }
 export type Lista = {
-    todo?: List[];
+    todo: List[];
     dataList: List;
     setDataList: () => void;
     novoTodo?: () => List;
-    type?: Status;
-    filtra?: () => List[];
-    atualizarTodo?:  () => List;
+    type: Status;
+    atualizarTodo: () => void;
 }
 export enum Status {
     ATIVO = "ATIVO",
@@ -40,4 +36,16 @@ export enum Status {
     ABERTO = "ABERTO",
     CONCLUIDO = "CONCLUIDO"
 
+}
+
+
+export type todoListProps = {
+    todo: List[];
+    type: Status;
+}
+export type TodoProps = {
+    todo: List[];
+}
+export type todoTypesProps = {
+    type: Status;
 }
