@@ -1,21 +1,61 @@
+
+
 export type List = {
-    id?: string
+    id: string
     name: string;
     descricao: string;
-    percentual?: number;
-    status?:Status;
-    createdAt: string;
+    percentual: number;
+    status: Status;
+    createdAt?: string;
     updatedAt?: string;
+}
+
+export type todoUpdate = {
+    id?: string
+    todoName: string;
+    todoDescricao: string;
+    todoPercentual: number;
+    todoStatus: Status;
+    todoCreatedAt?: string;
+    TdodoUpdatedAt?: string;
 }
 export type Lista = {
     todo: List[];
+    dataList: List;
+    setDataList: () => void;
     novoTodo?: () => List;
+    type: Status;
+    atualizarTodo: () => void;
 }
-enum Status {
-    ATIVO,
-    DESATIVADO,
-    FAZENDO,
-    PAUSADO,
-    CANCELADO,
-    ABERTO
-  }
+export enum Status {
+    ATIVO = "ATIVO",
+    DESATIVADO = "DESATIVADO",
+    FAZENDO = "FAZENDO",
+    PAUSADO = "PAUSADO",
+    CANCELADO = "CANCELADO",
+    ABERTO = "ABERTO",
+    CONCLUIDO = "CONCLUIDO"
+
+}
+
+
+export type todoListProps = {
+    todo: List[];
+    type: Status;
+}
+export type TodoProps = {
+    todo: List[];
+}
+export type todoTypesProps = {
+    type: Status;
+}
+export type TipoMessageProps = {
+    messagem: string;
+    tipo: TipoMessage;
+}
+export enum TipoMessage {
+    SUCCESS = "success",
+    INFO = "info",
+    ALERT = "alert",
+    DANGER = "danger",
+}

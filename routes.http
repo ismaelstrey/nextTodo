@@ -22,9 +22,35 @@ Content-Type: application/json
     "percentual":90
 }
 ###
+POST http://localhost:3000/api/todo
+Content-Type: application/json
+
+{    
+    "name":"Lavar roupa", 
+    "descricao":"Lavar toda roupa suja",
+    "percentual":100,
+    "status": "ABERTO" 
+}
+###
 
 DELETE http://localhost:3000/api/todo/7
 Content-Type: application/json
 
 
 ###
+###
+
+PATCH  http://localhost:3000/api/todo/19
+Content-Type: application/json
+
+{    
+    
+    "status": "PAUSADO" 
+}
+
+# ATIVO
+#   DESATIVADO
+#   FAZENDO
+#   PAUSADO
+#   CANCELADO
+#   ABERTO

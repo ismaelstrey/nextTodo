@@ -8,7 +8,7 @@ export async function GET(request: Request) {
             name: true,
             descricao: true,
             status: true,
-            percentual: true,      
+            percentual: true,
             createdAt: true,
             updatedAt: true
         }
@@ -28,4 +28,6 @@ export async function POST(req: Request) {
     })
     return NextResponse.json({ todo })
 }
+
+
 

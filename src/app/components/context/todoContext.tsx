@@ -1,28 +1,26 @@
 "use client"
-
-import { Lista, List } from "@/app/@types/TypesList";
+import { Lista, List, TodoProps, TipoMessage } from "@/app/@types/TypesList";
 import React, { useEffect, useState } from "react";
-
-
-
 export const TodoContext = React.createContext<Lista | any>([]);
+import { toast } from 'sonner';
+import Message from "../message/Message";
 
 function TodoProvider(props: { children: React.ReactNode }) {
-    const [todo, setTodo] = useState<List>();
-
-
-
+    const [todo, setTodo] = useState<TodoProps[]>();
+    const [openFormulario, setOpenFormulario] = useState<boolean>(true)
+    const [todoLista, setTodoLista] = useState<List>()
 
     const gravar = (todo: Lista) => {
         console.log(todo)
     };
-    const getTodo = () => fetch('/api/todo', {
+    const getTodo = (): Promise<void> => fetch('/api/todo', {
         cache: 'no-store'
     })
         .then((res) => res.json())
-        .then((list) => {
-            setTodo(list)
+        .then((list: { todo: Lista[] }) => {
+            setTodo(list.todo)
         })
+        .catch(e => console.log(e))
 
 
     const deleteLista = async (id: number | undefined | string) => {
@@ -43,25 +41,51 @@ function TodoProvider(props: { children: React.ReactNode }) {
     };
 
     const novoTodo = ({ name, descricao }: List) => {
-        console.log({ name, descricao })
-        fetch(`/api/todo`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name, descricao }),
-        });
+        try {
+            console.log({ name, descricao })
+            fetch(`/api/todo`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, descricao }),
+            });
+        } catch (error) {
+            console.log(error)
+        }
     }
 
+    const atualizarTodo = async ({ id, status, descricao, name, percentual }: List) => {
+        try {
+            await fetch(`/api/todo/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status, descricao, name, percentual }),
+            });
+            setOpenFormulario(!openFormulario)
+            getTodo()
+            toast.custom(() => <Message messagem="Tocket Atualizado com sucesso" tipo={TipoMessage.SUCCESS} />)
+        } catch (error) {
 
+        }
+    }
 
+    const filtraById = (id: number): List =>
+        //@ts-ignore
+        todo?.filter(f => f.id === id)[0]
+    const handleCliclkOnCard = (id: number) => {
+        setTodoLista(filtraById(id))
+        setOpenFormulario(!openFormulario)
+    }
     useEffect(() => {
         getTodo()
+    }, [])
 
-    }, [todo])
 
     return (
-        <TodoContext.Provider value={{ todo, setTodo, gravar, deleteLista, novoTodo }}>
+        <TodoContext.Provider value={{ todo, setTodo, gravar, deleteLista, novoTodo, atualizarTodo, handleCliclkOnCard, openFormulario, todoLista }}>
             {props.children}
         </TodoContext.Provider>
     );
