@@ -23,14 +23,11 @@ export async function DELETE(
     },
   })
   return NextResponse.json({ deletTodo })
-
-
 }
 export async function PATCH(req: Request, { params }: { params: { todoid: number } }) {
   try {
     const idTodo = Number(params.todoid)
     const body = await req.json()
-    console.log(body)
     const result = await prisma.todo.update({
       where: {
         id: idTodo,

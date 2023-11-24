@@ -14,7 +14,6 @@ const TodoList: React.FC<todoListProps> = ({ todo, type }) => {
 
 
   const filtra = () => todo.filter(f => f.status === type)
-  console.log(filtra())
 
   function calculateHoursDifference(startDate: string, endDate: string): number {
     // Parse as datas usando o Moment.js

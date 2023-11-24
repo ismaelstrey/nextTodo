@@ -1,7 +1,7 @@
 'use client'
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import Kanbam from './Kanbam';
-import { List, Status } from '@/app/@types/TypesList';
+import { Status } from '@/app/@types/TypesList';
 import { TodoContext } from '../context/todoContext';
 import TodoDetalhes from '../Todo/TodoDetalhes/TodoDetalhes';
 

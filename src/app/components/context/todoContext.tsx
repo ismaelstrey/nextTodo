@@ -18,6 +18,7 @@ function TodoProvider(props: { children: React.ReactNode }) {
         .then((list: { todo: Lista[] }) => {
             setTodo(list.todo)
         })
+        .catch(e => console.log(e))
 
 
     const deleteLista = async (id: number | undefined | string) => {
@@ -51,14 +52,9 @@ function TodoProvider(props: { children: React.ReactNode }) {
             console.log(error)
         }
     }
-    interface atualizaProps {
-        id: string;
-        status: string;
-    }
-    const atualizarTodo = async ({ id, status, descricao, name, percentual }: List) => {
 
+    const atualizarTodo = async ({ id, status, descricao, name, percentual }: List) => {
         try {
-            console.log(id, status)
             await fetch(`/api/todo/${id}`, {
                 method: 'PATCH',
                 headers: {
@@ -67,11 +63,11 @@ function TodoProvider(props: { children: React.ReactNode }) {
                 body: JSON.stringify({ status, descricao, name, percentual }),
             });
             setOpenFormulario(!openFormulario)
+            getTodo()
         } catch (error) {
 
         }
     }
-
 
     const filtraById = (id: number): List =>
         //@ts-ignore
@@ -80,13 +76,9 @@ function TodoProvider(props: { children: React.ReactNode }) {
         setTodoLista(filtraById(id))
         setOpenFormulario(!openFormulario)
     }
-
-
-
     useEffect(() => {
         getTodo()
-
-    }, [todo])
+    }, [])
 
 
     return (

@@ -49,3 +49,13 @@ export type TodoProps = {
 export type todoTypesProps = {
     type: Status;
 }
+export type TipoMessageProps = {
+    messagem: string;
+    tipo: TipoMessage;
+}
+export enum TipoMessage {
+    SUCCESS = "success",
+    INFO = "info",
+    ALERT = "alert",
+    DANGER = "danger",
+}
