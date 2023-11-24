@@ -1,7 +1,9 @@
 "use client"
-import { Lista, List, TodoProps } from "@/app/@types/TypesList";
+import { Lista, List, TodoProps, TipoMessage } from "@/app/@types/TypesList";
 import React, { useEffect, useState } from "react";
 export const TodoContext = React.createContext<Lista | any>([]);
+import { toast } from 'sonner';
+import Message from "../message/Message";
 
 function TodoProvider(props: { children: React.ReactNode }) {
     const [todo, setTodo] = useState<TodoProps[]>();
@@ -64,6 +66,7 @@ function TodoProvider(props: { children: React.ReactNode }) {
             });
             setOpenFormulario(!openFormulario)
             getTodo()
+            toast.custom(() => <Message messagem="Tocket Atualizado com sucesso" tipo={TipoMessage.SUCCESS} />)
         } catch (error) {
 
         }

@@ -2,11 +2,10 @@
 import React, { useContext, useState } from "react";
 import { TodoContext } from "../../context/todoContext";
 import { List, Status } from "@/app/@types/TypesList";
-import moment from "moment"
+
 
 const TodoDetalhes = ({ name, descricao, status, id, percentual, createdAt, updatedAt }: List) => {
     const { atualizarTodo } = useContext(TodoContext)
-    const hora = moment().format('h:mm:ss');
     const [todoName, setTodoName] = useState<string>(name)
     const [todoDescricao, setTodoDescricao] = useState<string>(descricao)
     const [todoStatus, setTodoStatus] = useState<Status>(status)
@@ -16,9 +15,9 @@ const TodoDetalhes = ({ name, descricao, status, id, percentual, createdAt, upda
     const data: List = { "id": id, "name": todoName, "descricao": todoDescricao, "status": todoStatus, "percentual": Number(todoPercentual), }
     const atualiza = (data: List) => atualizarTodo(data)
     return (
-        <div className="flex w-screen h-screen flex-col">
-            <div className="flex h-full flex-col w-screen justify-center items-center content-center justify-items-center ">
-                <div className="flex w-3/4 rounded-md flex-col gap-2">
+        <div className="flex w-screen h-screen justify-center items-center content-center justify-items-center flex-col bg-black/90">
+            <div className="flex h-[80%] rounded-lg flex-col w-3/4 justify-center items-center content-center justify-items-center bg-black shadow-xl shadow-amber-500 stroke-fuchsia-300 hover:shadow-green-500 translate-x-5">
+                <div className="flex w-3/4 rounded-md flex-col gap-2 ">
                     <input type="text" name="id" defaultValue={id} disabled />
                     <input type="text" name="nome" defaultValue={todoName} onChange={(e) => setTodoName(handleOnchange(e))} />
                     <textarea name="descricao" defaultValue={descricao} onChange={(e) => setTodoDescricao(handleOnchange(e))}></textarea>

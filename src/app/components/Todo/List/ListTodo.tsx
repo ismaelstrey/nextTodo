@@ -35,7 +35,7 @@ const TodoList: React.FC<todoListProps> = ({ todo, type }) => {
     return differenceInHours;
   }
 
-  const RenderCard: React.FC = () => <div className="flex w-full h-full rounded-md">
+  const RenderCard: React.FC = () => <div className="flex w-full h-full rounded-md shadow-white">
     <ul className="flex flex-col gap-2">
       {filtra().map((l: List) => {
         const largura = `${l.percentual}%`;
